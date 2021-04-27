@@ -8,11 +8,16 @@ body {
     background-color: lightskyblue;
 }
 
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
 .header {
     display: flex;
 }
 
 .logo {
     flex-grow: 1;
+    font-size: 2.5rem;
 }
-
