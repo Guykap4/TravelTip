@@ -19,7 +19,13 @@ function onInit() {
 
 function onSearchLocation() {
     const locationName = document.querySelector('input[name=location-search]').value;
-    console.log(locationName);
+    locService.searchPlace(locationName)
+    .then(res => {
+        console.log(res)
+        const pos = res.candidates[0].geometry.location;
+        mapService.panTo(pos.lat, pos.lng);
+        mapService.addMarker({ lat: pos.lat, lng: pos.lng });
+    })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition

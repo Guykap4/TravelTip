@@ -1,9 +1,13 @@
+import { API_KEY } from './api.service.js'
 import { utilService } from './util.service.js'
+import { storageService } from './storage.service'
+const KEY = 'locations'
 
-const gLocations = [];
+const gLocations = storageService.loadFromStorage(KEY) || [];
 
 export const locService = {
-    getLocs
+    getLocs,
+    searchPlace,
 }
 
 
@@ -13,6 +17,10 @@ function getLocs() {
             resolve(locs);
         }, 2000)
     });
+}
+
+function searchPlace(val) {
+    return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${val}&inputtype=textquery&fields=geometry&key=${API_KEY}`).then(res => res.data)
 }
 
 function createLocations(location) {
