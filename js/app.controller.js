@@ -2,10 +2,7 @@ import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
 window.onload = onInit;
-window.onAddMarker = onAddMarker;
-window.onPanTo = onPanTo;
-window.onGetLocs = onGetLocs;
-window.onGetUserPos = onGetUserPos;
+
 
 function onInit() {
     mapService.initMap()
@@ -15,6 +12,7 @@ function onInit() {
         .catch(() => console.log('Error: cannot init map'));
     document.querySelector('.btn-user-pos').addEventListener('click', onGetUserPos)
     document.querySelector('.search-button').addEventListener('click', onSearchLocation)
+    renderLocTable();
 }
 
 function onSearchLocation() {
@@ -26,6 +24,7 @@ function onSearchLocation() {
             mapService.panTo(pos.lat, pos.lng);
             mapService.addMarker({ lat: pos.lat, lng: pos.lng });
             locService.createLocations({ name: locationName, lat: pos.lat, lng: pos.lng })
+            renderLocTable();
             console.log(locService.getSavedLocations());
         })
     // .catch(console.log('Zero Results'))
@@ -39,18 +38,6 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
-    console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
-}
-
-function onGetLocs() {
-    locService.getLocs()
-        .then(locs => {
-            console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs)
-        })
-}
 
 function onGetUserPos() {
     getPosition()
@@ -65,7 +52,18 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-function onPanTo() {
-    console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+
+function renderLocTable() {
+    const locations = locService.getSavedLocations();
+    let locationStr = locations.map(loc => {
+        return `
+            <div class="location-card" data-id="${loc.id}">
+                <p>${loc.name}</p>
+                <button class="btn card-go-btn">GO</button>
+                <button class="btn card-remove-btn">Remove</button>
+            </div>
+        `
+    }).join('')
+    document.querySelector('.locations-container').innerHTML = locationStr;
+
 }

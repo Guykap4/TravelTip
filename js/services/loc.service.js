@@ -29,6 +29,7 @@ function searchPlace(val) {
 function createLocations(location) {
     const { name, lat, lng } = location;
     gLocations.push(_createLocation(name, lat, lng))
+    storageService.saveToStorage(KEY, gLocations);
 }
 
 
