@@ -2,6 +2,7 @@ import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
 window.onload = onInit;
+window.onAddPlace = onAddPlace;
 
 
 function onInit() {
@@ -10,8 +11,8 @@ function onInit() {
             console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
-    document.querySelector('.btn-user-pos').addEventListener('click', onGetUserPos)
-    document.querySelector('.search-button').addEventListener('click', onSearchLocation)
+    document.querySelector('.btn-user-pos').addEventListener('click', onGetUserPos);
+    document.querySelector('.search-button').addEventListener('click', onSearchLocation);
     renderLocTable();
 }
 
@@ -53,6 +54,18 @@ function onGetUserPos() {
         })
 }
 
+function addEvents() {
+    const goBtns = document.querySelectorAll('.card-go-btn')
+    goBtns.forEach(btn => {
+        btn.addEventListener('click', onGoToLocation);
+    });
+    const removeBtns = document.querySelectorAll('.card-remove-btn');
+    removeBtns.forEach(btn => {
+        btn.addEventListener('click', onRemoveLocation);
+    })
+
+}
+
 function renderLocTable() {
     const locations = locService.getSavedLocations();
     let locationStr = locations.map(loc => {
@@ -65,5 +78,22 @@ function renderLocTable() {
         `
     }).join('')
     document.querySelector('.locations-container').innerHTML = locationStr;
+    addEvents();
 
+}
+
+
+function onRemoveLocation(ev) {
+    const locId = ev.target.dataset.id;
+    locService.removeLocation(locId);
+    renderLocTable();
+}
+
+
+function onGoToLocation(ev) {
+    console.log(ev)
+}
+
+function onAddPlace(a, b) {
+    console.log(b)
 }

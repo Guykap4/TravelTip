@@ -11,6 +11,7 @@ export const locService = {
     searchPlace,
     createLocations,
     getSavedLocations,
+    removeLocation,
 }
 
 
@@ -47,4 +48,14 @@ function _createLocation(name, lat, lng) {
 
 function getSavedLocations() {
     return gLocations;
+}
+
+function removeLocation(locId) {
+    let idx = _getLocById(locId);
+    gLocations.splice(idx, 1);
+}
+
+function _getLocById(locId) {
+    if (gLocations.length === 1) return gLocations[0];
+    return gLocations.findIndex(loc => loc === locId);
 }

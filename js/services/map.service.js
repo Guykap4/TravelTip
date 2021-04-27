@@ -39,8 +39,11 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     infoWindow.setContent(
                       
                     `<span>${results[0].formatted_address}</span>
-                    <div class="info-window-btn" onclick="test()">Add Location</div>`
+                    <div class="info-window-btn" onclick="onAddPlace('${results[0].formatted_address}', ${mapsMouseEvent.latLng})">Add Location</div>`
                     );
+                    // document.querySelector('.info-window-btn').addEventListener('click', () => {
+                    //     console.log();
+                    // })
                 })
                 infoWindow.open(gMap);
               });
