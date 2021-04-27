@@ -53,9 +53,10 @@ function getSavedLocations() {
 function removeLocation(locId) {
     let idx = _getLocById(locId);
     gLocations.splice(idx, 1);
+    storageService.saveToStorage(KEY, gLocations);
 }
 
 function _getLocById(locId) {
     if (gLocations.length === 1) return gLocations[0];
-    return gLocations.findIndex(loc => loc === locId);
+    return gLocations.findIndex(loc => loc.id === locId);
 }
