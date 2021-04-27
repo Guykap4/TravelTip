@@ -58,7 +58,7 @@ function addEvents() {
     goBtns.forEach(btn => {
         btn.addEventListener('click', onGoToLocation);
     });
-    const removeBtns = document.querySelector('.card-remove-btn');
+    const removeBtns = document.querySelectorAll('.card-remove-btn');
     removeBtns.forEach(btn => {
         btn.addEventListener('click', onRemoveLocation);
     })
@@ -70,7 +70,7 @@ function renderLocTable() {
         return `
             <div class="location-card" data-id="${loc.id}">
                 <p>${loc.name}</p>
-                <button class="btn card-go-btn">GO</button>
+                <button class="btn card-go-btn" data-pos:"${loc.lat},${loc.lng}">GO</button>
                 <button class="btn card-remove-btn">Remove</button>
             </div>
         `
@@ -83,11 +83,13 @@ function renderLocTable() {
 
 function onRemoveLocation(ev) {
     const locId = ev.target.dataset.id;
-    removeLocation(locId);
+    locService.removeLocation(locId);
     renderLocTable();
 }
 
 
 function onGoToLocation(ev) {
-    console.log(ev)
+    let pos = ev.target.dataset.pos;
+    pos = pos.split(',');
+    mapService.panTo(pos[0], pos[1]);
 }

@@ -57,5 +57,5 @@ function removeLocation(locId) {
 
 function _getLocById(locId) {
     if (gLocations.length === 1) return gLocations[0];
-    return gLocations.findIndex(loc => loc === locId);
+    return gLocations.findIndex(loc => loc.id === locId);
 }
