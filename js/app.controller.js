@@ -25,7 +25,10 @@ function onSearchLocation() {
         const pos = res.candidates[0].geometry.location;
         mapService.panTo(pos.lat, pos.lng);
         mapService.addMarker({ lat: pos.lat, lng: pos.lng });
+        locService.createLocations({name: locationName, lat: pos.lat, lng: pos.lng})
+        console.log(locService.getSavedLocations());
     })
+    // .catch(console.log('Zero Results'))
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
