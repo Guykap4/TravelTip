@@ -1,7 +1,9 @@
 import { API_KEY } from './api.service.js'
 import { utilService } from './util.service.js'
+import { storageService } from './storage.service'
+const KEY = 'locations'
 
-const gLocations = [];
+const gLocations = storageService.loadFromStorage(KEY) || [];
 
 export const locService = {
     getLocs,
