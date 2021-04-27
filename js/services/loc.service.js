@@ -1,12 +1,11 @@
+import { utilService } from './util-service'
+
+const gLocations = [];
+
 export const locService = {
     getLocs
 }
 
-
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -16,4 +15,20 @@ function getLocs() {
     });
 }
 
+function createLocations(location) {
+    const { name, lat, lng } = location;
+    gLocations.push(_createLocation(name, lat, lng))
+}
 
+
+function _createLocation(name, lat, lng) {
+    return {
+        id: utilService.makeId,
+        name,
+        lat,
+        lng,
+        weather: '',
+        createdAt: Date.now(),
+        updatedAt: ''
+    }
+}
