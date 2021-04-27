@@ -1,5 +1,8 @@
+import { API_KEY } from './api.service.js'
+
 export const locService = {
-    getLocs
+    getLocs,
+    searchPlace,
 }
 
 
@@ -16,4 +19,6 @@ function getLocs() {
     });
 }
 
-
+function searchPlace(val) {
+    return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${val}&inputtype=textquery&fields=geometry&key=${API_KEY}`).then(res => res.data)
+}
