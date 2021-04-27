@@ -92,9 +92,6 @@ header, section {
     margin-bottom: 5px;
 }
 
-.location-card p {
-    flex: 1
-}
 
 .info-window-btn {
     margin: auto;
@@ -113,4 +110,23 @@ header, section {
 
 .location-card p, .weather-info, .locations-container, .info-container, .logo, .curr-location {
     flex: 1;
+}
+
+@media (min-width:600px) {
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+@media (min-width:1000px) {
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+@media (min-width:1300px) {
+    .container {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
 }
