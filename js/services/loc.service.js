@@ -1,4 +1,4 @@
-import { utilService } from './util-service'
+import { utilService } from './util.service.js'
 
 const gLocations = [];
 
