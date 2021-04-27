@@ -71,6 +71,10 @@ function renderLocTable() {
                 <p>${loc.name}</p>
                 <button class="btn card-go-btn" data-name="${loc.name}" data-pos="${loc.lat},${loc.lng}">GO</button>
                 <button class="btn card-remove-btn"  data-id="${loc.id}">Remove</button>
+            <div class="location-card" >
+                <p>${loc.name}</p>
+                <button class="btn card-go-btn" data-pos="${loc.lat},${loc.lng}">GO</button>
+                <button class="btn card-remove-btn" data-id="${loc.id}">Remove</button>
             </div>
         `
     }).join('')
@@ -90,6 +94,7 @@ function onRemoveLocation(ev) {
 function onGoToLocation(ev) {
     let pos = ev.target.dataset.pos;
     pos = pos.split(',');
+    console.log(pos)
     mapService.panTo(pos[0], pos[1]);
     renderDisplayedPlace(ev.target.dataset.name);
 }
