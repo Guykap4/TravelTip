@@ -1,5 +1,5 @@
 import { API_KEY } from './api.service.js'
-import { utilService } from './util-service'
+import { utilService } from './util.service.js'
 
 const gLocations = [];
 
