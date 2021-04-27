@@ -9,6 +9,8 @@ const gLocations = storageService.loadFromStorage(KEY) || [];
 export const locService = {
     getLocs,
     searchPlace,
+    createLocations,
+    getSavedLocations,
 }
 
 
@@ -32,7 +34,7 @@ function createLocations(location) {
 
 function _createLocation(name, lat, lng) {
     return {
-        id: utilService.makeId,
+        id: utilService.makeId(),
         name,
         lat,
         lng,
@@ -40,4 +42,8 @@ function _createLocation(name, lat, lng) {
         createdAt: Date.now(),
         updatedAt: ''
     }
+}
+
+function getSavedLocations() {
+    return gLocations;
 }
