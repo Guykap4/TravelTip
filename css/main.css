@@ -3,9 +3,14 @@
 }
 
 body {
+    font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #9ede73;
+}
+
+header, section {
+    padding: 20px 0;
 }
 
 .btn {
@@ -13,6 +18,12 @@ body {
     color: #fff;
     background-color: grey;
     padding: 0 10px;
+    font-size: 1.5rem;
+}
+
+.btn:active {
+    position: relative;
+    top: 2px;
 }
 
 .container {
@@ -22,7 +33,6 @@ body {
 
 .header {
     display: flex;
-    margin: 20px auto;
     font-family: 'Original Surfer', cursive;
 }
 
@@ -34,7 +44,7 @@ body {
     margin-inline-start: 50px;
 }
 
-.logo {
+.logo, .curr-location {
     flex-grow: 1;
     font-size: 2.5rem;
 }
