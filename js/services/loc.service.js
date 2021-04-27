@@ -1,9 +1,10 @@
-import { API_KEY } from './api.service.js'
-import { utilService } from './util.service.js'
-import { storageService } from './storage.service.js'
+import { API_KEY } from './api.service.js';
+import { utilService } from './util.service.js';
+import { storageService } from './storage.service.js';
 const KEY = 'locations'
 
 const gLocations = storageService.loadFromStorage(KEY) || [];
+
 
 export const locService = {
     getLocs,
@@ -28,6 +29,7 @@ function searchPlace(val) {
 function createLocations(location) {
     const { name, lat, lng } = location;
     gLocations.push(_createLocation(name, lat, lng))
+    storageService.saveToStorage(KEY, gLocations);
 }
 
 

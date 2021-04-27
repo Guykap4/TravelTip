@@ -18,6 +18,33 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             });
         })
+        .then(() => {
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Click the map to get Location!",
+                position: { lat, lng },
+              });
+              infoWindow.open(gMap);
+              // Configure the click listener.
+              gMap.addListener('click', (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                infoWindow.close();
+                // Create a new InfoWindow.
+                infoWindow = new google.maps.InfoWindow({
+                  position: mapsMouseEvent.latLng,
+                });
+
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: mapsMouseEvent.latLng}, (results) => {
+                    console.log(results[0]);
+                    infoWindow.setContent(
+                      
+                    `<span>${results[0].formatted_address}</span>
+                    <div class="info-window-btn" onclick="test()">Add Location</div>`
+                    );
+                })
+                infoWindow.open(gMap);
+              });
+        })
 }
 
 function addMarker(loc) {
