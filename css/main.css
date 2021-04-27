@@ -33,6 +33,7 @@ header, section {
 
 .header {
     display: flex;
+    align-items: center;
     font-family: 'Original Surfer', cursive;
 }
 
@@ -55,9 +56,19 @@ header, section {
 }
 
 .map-container {
-    max-width: 60%;
+    width: 600px;
 }
 
 .info-container {
     width: 200px;
+}
+
+.details-container {
+    display: flex;
+}
+
+.location-card {
+    width: 200px;
+    height: 50px;
+    background-color: lime;
 }
