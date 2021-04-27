@@ -5,7 +5,14 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: lightskyblue;
+    background-color: #9ede73;
+}
+
+.btn {
+    height: 50px;
+    color: #fff;
+    background-color: grey;
+    padding: 0 10px;
 }
 
 .container {
@@ -15,6 +22,16 @@ body {
 
 .header {
     display: flex;
+    margin: 20px auto;
+    font-family: 'Original Surfer', cursive;
+}
+
+.header input {
+    width: 30vw;
+}
+
+.btn-user-pos {
+    margin-inline-start: 50px;
 }
 
 .logo {
@@ -34,5 +51,3 @@ body {
 .info-container {
     width: 200px;
 }
-
-
