@@ -13,19 +13,19 @@ function onInit() {
             console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
-        document.querySelector('.btn-user-pos').addEventListener('click', onGetUserPos)
-        document.querySelector('.search-button').addEventListener('click', onSearchLocation)
+    document.querySelector('.btn-user-pos').addEventListener('click', onGetUserPos)
+    document.querySelector('.search-button').addEventListener('click', onSearchLocation)
 }
 
 function onSearchLocation() {
     const locationName = document.querySelector('input[name=location-search]').value;
     locService.searchPlace(locationName)
-    .then(res => {
-        console.log(res)
-        const pos = res.candidates[0].geometry.location;
-        mapService.panTo(pos.lat, pos.lng);
-        mapService.addMarker({ lat: pos.lat, lng: pos.lng });
-    })
+        .then(res => {
+            console.log(res)
+            const pos = res.candidates[0].geometry.location;
+            mapService.panTo(pos.lat, pos.lng);
+            mapService.addMarker({ lat: pos.lat, lng: pos.lng });
+        })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -55,8 +55,8 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             // document.querySelector('.user-pos').innerText =
             //     `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
-                mapService.panTo(pos.coords.latitude, pos.coords.longitude);
-                mapService.addMarker({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+            mapService.panTo(pos.coords.latitude, pos.coords.longitude);
+            mapService.addMarker({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         })
         .catch(err => {
             console.log('err!!!', err);
