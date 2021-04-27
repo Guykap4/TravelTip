@@ -1,15 +1,13 @@
 import { API_KEY } from './api.service.js'
+import { utilService } from './util-service'
+
+const gLocations = [];
 
 export const locService = {
     getLocs,
     searchPlace,
 }
 
-
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -21,4 +19,22 @@ function getLocs() {
 
 function searchPlace(val) {
     return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${val}&inputtype=textquery&fields=geometry&key=${API_KEY}`).then(res => res.data)
+}
+
+function createLocations(location) {
+    const { name, lat, lng } = location;
+    gLocations.push(_createLocation(name, lat, lng))
+}
+
+
+function _createLocation(name, lat, lng) {
+    return {
+        id: utilService.makeId,
+        name,
+        lat,
+        lng,
+        weather: '',
+        createdAt: Date.now(),
+        updatedAt: ''
+    }
 }

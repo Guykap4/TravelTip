@@ -38,6 +38,7 @@ header, section {
 }
 
 .header input {
+    height: 50px;
     width: 30vw;
 }
 
