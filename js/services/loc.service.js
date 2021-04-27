@@ -1,6 +1,6 @@
 import { API_KEY } from './api.service.js'
 import { utilService } from './util.service.js'
-import { storageService } from './storage.service'
+import { storageService } from './storage.service.js'
 const KEY = 'locations'
 
 const gLocations = storageService.loadFromStorage(KEY) || [];
