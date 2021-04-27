@@ -46,8 +46,7 @@ header, section {
     margin-inline-start: 50px;
 }
 
-.logo, .curr-location, .location-card p {
-    flex: 1;
+.logo, .curr-location {
     font-size: 2rem;
 }
 
@@ -60,22 +59,27 @@ header, section {
     display: flex;
     gap: 20px;
     width: 100%;
+    height: 600px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.weather-info, .locations-container {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.locations-container {
+    overflow: auto;
 }
 
 .map-container {
     flex: 2;
-}
-
-.info-container {
-    flex: 1;
-    background-color: #fff;
-    border: 1px solid #000;
-    overflow-y: scroll;
-}
-
-.details-container {
-    display: flex;
-    justify-content: space-around;
 }
 
 .location-card {
@@ -88,6 +92,6 @@ header, section {
     margin-bottom: 5px;
 }
 
-.location-card p {
-    flex: 1
+.location-card p, .weather-info, .locations-container, .info-container, .logo, .curr-location {
+    flex: 1;
 }
